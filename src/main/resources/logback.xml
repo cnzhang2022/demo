@@ -10,7 +10,7 @@
 
     <appender name="logfile"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>${logDir}/myok.log</File>
+        <File>${logDir}/demo.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <FileNamePattern>${logDir}/logs/history/demo.%d{yyyy-MM-dd}${processName}.log.gz</FileNamePattern>
             <maxHistory>30</maxHistory>
