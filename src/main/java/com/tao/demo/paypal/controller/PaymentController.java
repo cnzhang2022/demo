@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,8 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/")
 public class PaymentController {
 
-    public static final String PAYPAL_SUCCESS_URL = "pay/success";
-    public static final String PAYPAL_CANCEL_URL = "pay/cancel";
+    public static final String PAYPAL_SUCCESS_URL = "success";
+    public static final String PAYPAL_CANCEL_URL = "cancel";
 
     @Autowired
     private PaypalService paypalService;
@@ -59,8 +60,9 @@ public class PaymentController {
 
     @GetMapping
     @RequestMapping(PAYPAL_SUCCESS_URL)
-    public String successPay(String paymentId, String payerId){
+    public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId){
         try {
+            System.out.println("paymentId=="+paymentId+"---payerId=="+payerId);
             Payment payment = paypalService.executePayment(paymentId, payerId);
             if(payment.getState().equals("approved")){
                 return "success";
