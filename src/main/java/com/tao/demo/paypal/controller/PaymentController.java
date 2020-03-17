@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/")
 public class PaymentController {
 
-    public static final String PAYPAL_SUCCESS_URL = "h5/success";
-    public static final String PAYPAL_CANCEL_URL = "h5/cancel";
+    public static final String PAYPAL_SUCCESS_URL = "pay/success";
+    public static final String PAYPAL_CANCEL_URL = "pay/cancel";
 
     @Autowired
     private PaypalService paypalService;
