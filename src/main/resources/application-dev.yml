@@ -23,3 +23,15 @@ spring:
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
     useGlobalDataSourceStat: true
     init-method: init
+
+  thymeleaf:
+    mode: HTML5
+    encoding: UTF-8
+    cache: false
+#  mvc:
+#    static-path-pattern: /**
+#    resources:
+#      static-locations: classpath:/templates/,classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+paypal.mode: sandbox
+paypal.client.app: Ac0vbVKKqLiTPBiXwWJ7owAt75GaNmsb9PIMs7qkZMoXtXUQgAiD8o7y-cJ4M4-Cehgj-9sVPpwTWseH
+paypal.client.secret: EA_Hs2COslKJAQD5-7PAzu5eIe8lDd2-POis2Zi7vUGbO_7jPuG2Uwvry2vEKtxgWfTNsiF1Z1LEpJoA
