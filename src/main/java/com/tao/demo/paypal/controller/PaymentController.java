@@ -73,4 +73,10 @@ public class PaymentController {
         return "redirect:/";
     }
 
+    @RequestMapping("paypal/notify")
+    public String notify(HttpServletRequest request){
+        System.out.println("---------notify---------");
+        return "notify";
+    }
+
 }
