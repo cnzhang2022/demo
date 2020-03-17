@@ -25,13 +25,27 @@ public class PaypalService {
                                  String description,
                                  String cancelUrl,
                                  String successUrl) throws PayPalRESTException {
+        Details details = new Details();
+        details.setShipping("1");
+        details.setSubtotal("5");
+        details.setTax("1");
+
         Amount amount = new Amount();
         amount.setCurrency(currency);
         amount.setTotal(String.format("%.2f", total));
+        amount.setDetails(details);
+
+        Item item = new Item();
+        item.setName("Ground Coffee 40 oz").setQuantity("1").setCurrency("USD").setPrice("5");
+        ItemList itemList = new ItemList();
+        List<Item> items = new ArrayList<Item>();
+        items.add(item);
+        itemList.setItems(items);
 
         Transaction transaction = new Transaction();
         transaction.setDescription(description);
         transaction.setAmount(amount);
+        transaction.setItemList(itemList);
 
         List<Transaction> transactions = new ArrayList<>();
         transactions.add(transaction);
