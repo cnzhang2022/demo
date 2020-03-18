@@ -65,6 +65,7 @@ public class PaymentController {
         try {
             System.out.println("paymentId=="+paymentId+"---payerId=="+payerId);
             Payment payment = paypalService.executePayment(paymentId, payerId);
+            System.out.println("payment==="+payment.getState());
             if(payment.getState().equals("approved")){
                 return "success";
             }
