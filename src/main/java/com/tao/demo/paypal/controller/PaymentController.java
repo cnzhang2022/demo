@@ -19,8 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/")
 public class PaymentController {
 
-    public static final String PAYPAL_SUCCESS_URL = "success";
-    public static final String PAYPAL_CANCEL_URL = "cancel";
+    public static final String PAYPAL_SUCCESS_URL = "pay/success";
+    public static final String PAYPAL_CANCEL_URL = "h5/cancel";
 
     @Autowired
     private PaypalService paypalService;
@@ -41,7 +41,6 @@ public class PaymentController {
                     "payment description",
                     cancelUrl,
                     successUrl);
-            System.out.println("pay=="+payment);
             for (Links links: payment.getLinks()) {
                 if(links.getRel().equals("approval_url")){
                     return "redirect:" + links.getHref();
@@ -54,25 +53,18 @@ public class PaymentController {
     }
 
     @GetMapping
-    @RequestMapping(PAYPAL_CANCEL_URL)
-    public String cancelPay(){
-        return "cancel";
-    }
-
-    @GetMapping
     @RequestMapping(PAYPAL_SUCCESS_URL)
     public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId){
         try {
             System.out.println("paymentId=="+paymentId+"---payerId=="+payerId);
             Payment payment = paypalService.executePayment(paymentId, payerId);
-            System.out.println("payment==="+payment.getState());
             if(payment.getState().equals("approved")){
-                return "ok";
+                return "redirect:/h5/success";
             }
         } catch (PayPalRESTException e) {
             e.printStackTrace();
         }
-        return "redirect:/index";
+        return "redirect:/h5/index";
     }
 
 
