@@ -29,8 +29,9 @@ public class PaymentController {
     @RequestMapping("pay")
     public String pay(HttpServletRequest request) {
         String baseUrl = paypalService.getBaseURl(request);
-        String cancelUrl = request.getRequestURI()+ "/" + PAYPAL_CANCEL_URL;
-        String successUrl = request.getRequestURI() + "/" + PAYPAL_SUCCESS_URL;
+        String cancelUrl = baseUrl+ "/" + PAYPAL_CANCEL_URL;
+        String successUrl = baseUrl + "/" + PAYPAL_SUCCESS_URL;
+        System.out.println("successUrl=="+successUrl);
         try {
             Payment payment = paypalService.createPayment(
                     7.00,
