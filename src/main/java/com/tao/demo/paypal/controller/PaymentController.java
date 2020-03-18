@@ -15,7 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Enumeration;
 
@@ -87,6 +91,25 @@ public class PaymentController {
                 str = str + "&" + paramName + "=" + URLEncoder.encode(paramValue, "utf-8");
             }
             System.out.println("notify==="+str);
+            URL u = new URL("https://www.sandbox.paypal.com/cgi-bin/webscr");
+            HttpURLConnection uc = (HttpURLConnection) u.openConnection();
+            uc.setRequestMethod("POST");
+            uc.setDoOutput(true);
+            uc.setDoInput(true);
+            uc.setUseCaches(false);
+            //设置 HTTP 的头信息
+            uc.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            PrintWriter pw = new PrintWriter(uc.getOutputStream());
+            pw.println(str);
+            pw.close();
+
+            /**
+             * 接受 PayPal 对 IPN 回发的回复信息
+             */
+            BufferedReader in = new BufferedReader(new InputStreamReader(uc.getInputStream()));
+            String res = in.readLine();
+            in.close();
+            System.out.println("res==="+res);
         }catch (Exception e){
             e.printStackTrace();
         }
