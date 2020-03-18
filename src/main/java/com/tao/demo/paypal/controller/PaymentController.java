@@ -67,13 +67,14 @@ public class PaymentController {
             Payment payment = paypalService.executePayment(paymentId, payerId);
             System.out.println("payment==="+payment.getState());
             if(payment.getState().equals("approved")){
-                return "success";
+                return "ok";
             }
         } catch (PayPalRESTException e) {
             e.printStackTrace();
         }
-        return "redirect:/";
+        return "redirect:/index";
     }
+
 
     @RequestMapping("paypal/notify")
     public String notify(HttpServletRequest request){
