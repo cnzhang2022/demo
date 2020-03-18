@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
+import java.net.URLEncoder;
+import java.util.Enumeration;
 
 @Controller
 @RequestMapping("/")
@@ -69,9 +73,23 @@ public class PaymentController {
 
 
     @RequestMapping("paypal/notify")
-    public String notify(HttpServletRequest request){
+    public void notify(HttpServletRequest request, HttpServletResponse response){
         System.out.println("---------notify---------");
-        return "notify";
+
+        try {
+            PrintWriter out = response.getWriter();
+            Enumeration<String> en = request.getParameterNames();
+            String str = "cmd=_notify-validate";
+            while (en.hasMoreElements()) {
+                String paramName = en.nextElement();
+                String paramValue = request.getParameter(paramName);
+                //此处的编码一定要和自己的网站编码一致，不然会出现乱码，paypal回复的通知为‘INVALID’
+                str = str + "&" + paramName + "=" + URLEncoder.encode(paramValue, "utf-8");
+            }
+            System.out.println("notify==="+str);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 }
