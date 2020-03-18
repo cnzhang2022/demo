@@ -39,7 +39,6 @@ public class PaymentController {
         String baseUrl = paypalService.getBaseURl(request);
         String cancelUrl = baseUrl+ "/" + PAYPAL_CANCEL_URL;
         String successUrl = baseUrl + "/" + PAYPAL_SUCCESS_URL;
-        System.out.println("successUrl=="+successUrl);
         try {
             Payment payment = paypalService.createPayment(
                     7.00,
@@ -64,7 +63,6 @@ public class PaymentController {
     @RequestMapping(PAYPAL_SUCCESS_URL)
     public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId){
         try {
-            System.out.println("paymentId=="+paymentId+"---payerId=="+payerId);
             Payment payment = paypalService.executePayment(paymentId, payerId);
             if(payment.getState().equals("approved")){
                 return "redirect:/h5/success";
@@ -110,6 +108,23 @@ public class PaymentController {
             String res = in.readLine();
             in.close();
             System.out.println("res==="+res);
+            if (res.equalsIgnoreCase("VERIFIED")) {
+                // 交易状态 Completed 代表交易成功
+                String paymentStatus = request.getParameter("payment_status");
+                // 交易时间
+                String paymentDate = request.getParameter("payment_date");
+                // 交易id
+                String txnId = request.getParameter("txn_id");
+                // 父交易id
+                String parentTxnId = request.getParameter("parent_txn_id");
+                // 交易金额
+                String mcGross = request.getParameter("mc_gross");
+                // 自定义字段，我们存放的订单ID
+                String custom = request.getParameter("custom");
+                System.out.println(String.format("paymentStatus=%s，txnId=%s，parentTxnId=%s，mcGross=%s，custom=%s", paymentStatus, txnId, parentTxnId, mcGross, custom));
+                System.out.println("status=="+paymentStatus+",txnid=="+txnId);
+
+            }
         }catch (Exception e){
             e.printStackTrace();
         }
