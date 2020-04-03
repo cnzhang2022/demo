@@ -33,7 +33,6 @@ public class PaypalConfig {
     public APIContext apiContext() throws PayPalRESTException {
         APIContext context = new APIContext(clientId, clientSecret, mode);
         context.setConfigurationMap(paypalSdkConfig());
-        System.out.println("init..............."+ authTokenCredential().getAccessToken());
         return context;
     }
 }

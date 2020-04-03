@@ -1,5 +1,6 @@
 package com.tao.demo;
 
+import com.alibaba.nacos.spring.context.annotation.config.NacosPropertySource;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.tao.frameworks.base.spring.RequestMappingHandlerAdapterModify;
 import org.mybatis.spring.annotation.MapperScan;
@@ -9,6 +10,8 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 @MapperScan("com.tao.demo.dao")
+@NacosPropertySource(dataId = "DEMO", groupId = "CONFIG", autoRefreshed = true)
+@NacosPropertySource(dataId = "DEMO", groupId = "MYSQL", autoRefreshed = true)
 public class Application {
 
     public static void main(String[] args) {

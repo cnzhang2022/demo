@@ -1,28 +1,28 @@
 spring:
   application:
-    name: jifen-api
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://47.99.237.229:3306/test?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
-    username: root
-    password: root
-    type: com.alibaba.druid.pool.DruidDataSource
-    initialSize: 5
-    minIdle: 5
-    maxActive: 1000
-    maxWait: 60000
-    timeBetweenEvictionRunsMillis: 60000
-    minEvictableIdleTimeMillis: 300000
-    validationQuery: SELECT 1 FROM DUAL
-    testWhileIdle: true
-    testOnBorrow: false
-    testOnReturn: false
-    poolPreparedStatements: true
-    maxPoolPreparedStatementPerConnectionSize: 20
-    filters: stat
-    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
-    useGlobalDataSourceStat: true
-    init-method: init
+    name: demo
+#  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://111.230.249.118:3306/test?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
+#    username: root
+#    password: 123456
+#    type: com.alibaba.druid.pool.DruidDataSource
+#    initialSize: 5
+#    minIdle: 5
+#    maxActive: 1000
+#    maxWait: 60000
+#    timeBetweenEvictionRunsMillis: 60000
+#    minEvictableIdleTimeMillis: 300000
+#    validationQuery: SELECT 1 FROM DUAL
+#    testWhileIdle: true
+#    testOnBorrow: false
+#    testOnReturn: false
+#    poolPreparedStatements: true
+#    maxPoolPreparedStatementPerConnectionSize: 20
+#    filters: stat
+#    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+#    useGlobalDataSourceStat: true
+#    init-method: init
 
   thymeleaf:
     mode: HTML5
@@ -33,3 +33,7 @@ spring:
 paypal.mode: sandbox
 paypal.client.app: AYbTOnmDhdx_553M9oY7zlHpIZ-hRfZkQ9o8xMlgJ17oLRRgg6w30yj4JTg6Y8j_8mpyzv-fMvKvFxwY
 paypal.client.secret: ECN4-QHs3tc48ybBNhe8Gx0sTl3agT04_GaYFClKaYzbsQsLMlwNHN6mTsnfg5-TEbQr8ZxHSObF6A5Y
+nacos:
+  config:
+    server-addr: 111.230.249.118:8848
+    namespace: bf342b34-85ca-483d-9e8a-d32d71d300f6
