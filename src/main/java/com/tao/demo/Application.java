@@ -1,7 +1,6 @@
 package com.tao.demo;
 
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
-import com.tao.frameworks.base.spring.RequestMappingHandlerAdapterModify;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
