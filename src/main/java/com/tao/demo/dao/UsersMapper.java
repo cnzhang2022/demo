@@ -4,7 +4,7 @@ import com.tao.demo.entity.Users;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
- * @author zt on 2020-03-13 15:46:47
+ * @author zt on 2020-04-23 13:41:32
  */
 public interface UsersMapper extends BaseMapper<Users> {
 }

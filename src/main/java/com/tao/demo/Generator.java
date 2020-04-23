@@ -28,7 +28,7 @@ public class Generator {
         /**
          * 数据库连接地址
          */
-        CodeGenerator.DB_URL = "jdbc:mysql://47.99.237.229:3306/test";
+        CodeGenerator.DB_URL = "jdbc:mysql://47.99.237.229:3306/test?serverTimezone=UTC";
         /**
          * 数据库用户
          */
